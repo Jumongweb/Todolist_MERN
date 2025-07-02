@@ -1,0 +1,43 @@
+name: Build & Deploy Backend
+
+on:
+  push:
+    branches: [ main ]
+    paths:
+      - 'backend/**'
+
+jobs:
+  test-build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+      
+      - name: Install dependencies
+        working-directory: ./backend
+        run: npm install
+
+      - name: Run tests (optional)
+        working-directory: ./backend
+        run: npm test
+
+  deploy:
+    needs: test-build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Login to Render
+        uses: render-actions/login@v1
+        with:
+          apiKey: ${{ secrets.RENDER_API_KEY }}
+      
+      - name: Deploy to Render
+        uses: render-actions/deploy@v1
+        with:
+          serviceId: ${{ secrets.RENDER_SERVICE_ID }}
+          dockerfilePath: ./backend/Dockerfile
