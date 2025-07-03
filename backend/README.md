@@ -37,7 +37,7 @@ bashnpm install
 
 Set up environment variables
 Create a .env file in the root directory and add the following:
-envPORT=5000
+PORT=5000
 MONGODB_URI=mongodb://localhost:27017/todoapp
 JWT_SECRET=your-super-secret-jwt-key
 NODE_ENV=development
