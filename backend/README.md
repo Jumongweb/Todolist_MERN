@@ -49,3 +49,6 @@ MONGODB_URI - MongoDB connection string
 JWT_SECRET - Secret key for JWT token generation
 NODE_ENV - Environment (development/production)
 FRONTEND_URL - Frontend application URL for CORS
+
+Deployed frontend url ---> https://todo-app-mern-frontend.netlify.app/login
+Deployed backend url ----> https://todolist-mern-1o0p.onrender.com/api
